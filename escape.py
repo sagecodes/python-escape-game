@@ -22,9 +22,9 @@ def move_player(player, move):
     elif move == 'RIGHT':
         y += 1
     elif move == 'UP':
-        y -= 1
+        x -= 1
     elif move == 'DOWN':
-        y += 1
+        x += 1
 
     return x, y
 
@@ -43,18 +43,35 @@ def get_moves(player):
 
     return moves
 
+def draw_map(playr):
+    print(' _ _ _')
+    tile = '|{}'
+
+    for idx, cell in enumerate(CELLS):
+        if idx in [0, 1, 3, 4, 6, 7]:
+            if cell == player:
+                print(tile.format('X'), end='')
+            else:
+                print(tile.format('_'), end='')
+        else:
+            if cell == player:
+                print(tile.format('X|'))
+            else:
+                print(tile.format('_|'))
+
 
 monster, door, player = get_locations()
+print("Welcome to the Dungeon!")
 
 while True:
     moves = get_moves(player)
-    print("Welcome to the Dungeon!")
     print("You're currently in room {}".format(player))
+    draw_map(player)
     print("you can move {}".format(moves))
     print("Enter QUIT to quit")
 
     move = input("> ")
-    move = movie.upper()
+    move = move.upper()
 
     if move == 'QUIT':
         break
