@@ -22,17 +22,28 @@ def move_player(player, move):
     return player
 
 def get_moves(player):
-    MOVES = ['LEFT', 'RIGHT', 'UP', 'DOWN']
-    # if players y is 0 remove LEFT
-    # if players x is zero remove UP
-    # if players y is 2 remove right
-    # if players x is 2 remove DOWN
-    return MOVES
+    moves = ['LEFT', 'RIGHT', 'UP', 'DOWN']
+    # player = to x and y
+
+    if player[1] == 0:
+        moves.remove('LEFT')
+    if player[1] == 2:
+        moves.remove('RIGHT')
+    if player[0] == 0:
+        moves.remove('UP')
+    if player[0] == 2:
+        moves.remove('DOWN')
+
+    return moves
+
+
+monster, door, player = get_locations()
 
 while True:
+    moves = get_moves(player)
     print("Welcome to the Dungeon!")
-    print("You're currently in room {}") # fill in with player position
-    print("you can move {}") # fill in with available moves
+    print("You're currently in room {}".format(player))
+    print("you can move {}".format(moves))
     print("Enter QUIT to quit")
 
     move = input("> ")
