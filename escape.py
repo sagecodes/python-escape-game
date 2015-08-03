@@ -5,13 +5,14 @@ CELLS = [(0,0), (0,1), (0,2),
          (2,0), (2,1), (2,2)]
 
 def get_locations():
-    # monster = random
-    # door = random
-    # start = random
+    monster = random.choice(CELLS)
+    door = random.choice(CELLS)
+    start = random.choice(CELLS)
 
-    # if monster, door or start are the same, do it again
+    if monster == door or monster == start or door == start:
+        return get_locations()
+    return monster, door, start
 
-    # return monster, door, start
 def move_player(player, move):
    # get the players current location
    # if move is LEFT y - 1
